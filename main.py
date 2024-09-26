@@ -363,13 +363,13 @@ def main() -> None:
         with open("key.txt", "w") as f:
             f.write(correct_code)
 
-        open_confirmation = msg_confirm(
-            f"Your activation code is saved as key.txt\nDo you want to open ?",
-            "FileCxx Automatic Activation Code",
-            buttons=(YES_TEXT, NO_TEXT),
-            icon=MessageBoxIcon.INFORMATION,
-        )
-        if open_confirmation == YES_TEXT:
+  #      open_confirmation = msg_confirm(
+  #          f"Your activation code is saved as key.txt\nDo you want to open ?",
+  #          "FileCxx Automatic Activation Code",
+  #          buttons=(YES_TEXT, NO_TEXT),
+  #          icon=MessageBoxIcon.INFORMATION,
+  #      )
+  #      if open_confirmation == YES_TEXT:
             os.startfile("key.txt")
 
 
