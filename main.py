@@ -4,7 +4,7 @@ import psutil
 import requests
 import argparse
 import logging
-
+import pyperclip
 import pygetwindow as gw
 import pyautogui
 
@@ -304,32 +304,17 @@ def main() -> None:
 
     cached_data = None
     if os.path.exists("./keys.json"):
-        overwrite_confirmation = msg_confirm(
-            "keys.json already exists. Do you want to overwrite it?",
-            "FileCxx Automatic Activation Code",
-            buttons=(YES_TEXT, NO_TEXT),
-        )
-        if overwrite_confirmation == YES_TEXT:
-            logging.debug("Overwriting keys.json...")
+       # overwrite_confirmation = msg_confirm(
+       #     "keys.json already exists. Do you want to overwrite it?",
+       #     "FileCxx Automatic Activation Code",
+       #     buttons=(YES_TEXT, NO_TEXT),
+       # )
+       # if overwrite_confirmation == YES_TEXT:
+       #     logging.debug("Overwriting keys.json...")
             temp_data = build_cached_data()
             if temp_data:
                 write_keys_to_file(temp_data)
                 cached_data = json.loads(temp_data)
-        elif overwrite_confirmation == NO_TEXT:
-            try:
-                with open("keys.json", "r") as f:
-                    # Read the content of the file as a string
-                    file_content = f.read()
-                    # Parse the JSON content from the string
-                    cached_data = json.loads(file_content)
-            except Exception as e:
-                logging.exception(f"Failed to read keys from file: {e}")
-                msg_alert(
-                    "Failed to read keys from file. Check your file permissions or remove the keys.json file.",
-                    "FileCxx Automatic Activation Code",
-                    icon=MessageBoxIcon.ERROR,
-                )
-                return
     else:
         temp_data = build_cached_data()
         if temp_data:
@@ -362,6 +347,7 @@ def main() -> None:
     else:
         with open("key.txt", "w") as f:
             f.write(correct_code)
+        pyperclip.copy(correct_code)
 
   #      open_confirmation = msg_confirm(
   #          f"Your activation code is saved as key.txt\nDo you want to open ?",
@@ -370,8 +356,8 @@ def main() -> None:
   #          icon=MessageBoxIcon.INFORMATION,
   #      )
   #      if open_confirmation == YES_TEXT:
-            os.startfile("key.txt")
-
+  #      os.startfile("key.txt")
+        msg_alert("已将文件蜈蚣的注册码复制到剪贴板")
 
 if __name__ == "__main__":
     main()
