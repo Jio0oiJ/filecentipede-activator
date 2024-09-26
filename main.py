@@ -79,13 +79,13 @@ def is_filecxx_running() -> bool:
 def show_initial_messagebox() -> None:
     """
     Shows the initial message box.
-    """
+    
     msg_alert(
         "Beware of Scams! This is free software.\nIf you paid for it, please refund immediately.",
         "FileCxx Automatic Activation Code",
         icon=MessageBoxIcon.INFORMATION,
     )
-
+    """
 
 # Main Functions
 def parse_html_content(html_content) -> list:
